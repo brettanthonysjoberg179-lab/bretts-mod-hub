@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "bretts-mod-hub",
+  "title": "Brett's Mod Hub",
+  "description": "All-in-one Reddit moderation dashboard with queue, log, mail, flair, user history, and team coordination",
+  "requiredPermissions": ["read", "submit", "modposts"],
+  "triggers": {
+    "onAppInstall": "/internal/triggers/on-app-install",
+    "onAppUninstall": "/internal/triggers/on-app-uninstall",
+    "onUpdate": "/internal/triggers/on-update",
+    "onCommentCreate": "/internal/triggers/on-comment-create",
+    "onCommentReport": "/internal/triggers/on-comment-report",
+    "onPostCreate": "/internal/triggers/on-post-create",
+    "onPostReport": "/internal/triggers/on-post-report",
+    "onModAction": "/internal/triggers/on-mod-action",
+    "onModMail": "/internal/triggers/on-mod-mail",
+    "onWikiPageEdit": "/internal/triggers/on-wiki-edit"
+  },
+  "server": {
+    "directory": "server"
+  },
+  "clientPages": {
+    "App": {
+      "jsx": "client/App.jsx"
+    }
+  },
+  "resources": {
+    "css": ["client/styles/modern.css", "client/styles/mobile.css"]
+  },
+  "settings": {
+    "global": {
+      "apiKey": {
+        "type": "string",
+        "label": "API Key (for external integrations)",
+        "isSecret": true,
+        "defaultValue": ""
+      },
+      "environment": {
+        "type": "select",
+        "label": "Environment",
+        "options": [
+          {"label": "Production", "value": "production"},
+          {"label": "Development", "value": "development"}
+        ],
+        "defaultValue": "development"
+      }
+    },
+    "subreddit": {
+      "welcomeMessage": {
+        "type": "string",
+        "label": "Welcome Message",
+        "defaultValue": "Welcome to our community!",
+        "helpText": "Message sent to new members"
+      },
+      "autoModEnabled": {
+        "type": "boolean",
+        "label": "Enable Auto-Moderation",
+        "defaultValue": true,
+        "helpText": "Use built-in auto-moderation rules"
+      },
+      "queueThreshold": {
+        "type": "number",
+        "label": "Queue Alert Threshold",
+        "defaultValue": 50,
+        "helpText": "Alert when queue exceeds this count"
+      },
+      "spamFilter": {
+        "type": "select",
+        "label": "Spam Filter Sensitivity",
+        "options": [
+          {"label": "Low", "value": "low"},
+          {"label": "Medium", "value": "medium"},
+          {"label": "High", "value": "high"}
+        ],
+        "defaultValue": "medium"
+      }
+    }
+  },
+  "permissions": {
+    "reddit": {
+      "scope": "moderator",
+      "asUser": ["SUBMIT_POST", "SUBMIT_COMMENT", "SUBSCRIBE_TO_SUBREDDIT"]
+    },
+    "http": {
+      "enable": true,
+      "domains": ["api.reddit.com"]
+    }
+  }
+}

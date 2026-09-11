@@ -1,0 +1,35 @@
+{
+  "name": "bretts-mod-hub",
+  "version": "0.0.1",
+  "description": "All-in-one Reddit moderation dashboard with queue, log, mail, flair, user history, and team coordination",
+  "main": "index.js",
+  "scripts": {
+    "dev": "devvit dev",
+    "build": "devvit build",
+    "upload": "devvit upload",
+    "playtest": "devvit playtest .",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "@devvit/public-api": "^0.14.3",
+    "@devvit/web/server": "^0.14.3",
+    "@devvit/web/client": "^0.14.3",
+    "@devvit/reddit": "^0.14.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "keywords": [
+    "reddit",
+    "moderation",
+    "devvit",
+    "mod-tools",
+    "queue",
+    "mod-mail",
+    "flair",
+    "team-coordination"
+  ],
+  "author": "Brett Sjoberg",
+  "license": "MIT"
+}
